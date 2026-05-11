@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NaviEat</string>
+
+    <!-- Navegación -->
+    <string name="nav_home">Hoy</string>
+    <string name="nav_plan">Plan</string>
+    <string name="nav_shopping">Compra</string>
+    <string name="nav_settings">Ajustes</string>
+
+    <!-- Pantalla Hoy -->
+    <string name="home_now_eating">Lo que te toca ahora</string>
+    <string name="home_no_plan">Aún no hay plan de dieta. Sube el PDF de tu dietista para empezar.</string>
+    <string name="home_upload_pdf">Subir PDF</string>
+    <string name="home_swap_dish">No me apetece — sugiéreme otra cosa</string>
+    <string name="home_next_meal">Siguiente comida</string>
+
+    <!-- Plan -->
+    <string name="plan_title">Tu plan semanal</string>
+    <string name="plan_day_monday">Lunes</string>
+    <string name="plan_day_tuesday">Martes</string>
+    <string name="plan_day_wednesday">Miércoles</string>
+    <string name="plan_day_thursday">Jueves</string>
+    <string name="plan_day_friday">Viernes</string>
+    <string name="plan_day_saturday">Sábado</string>
+    <string name="plan_day_sunday">Domingo</string>
+    <string name="meal_breakfast">Desayuno</string>
+    <string name="meal_midmorning">Almuerzo</string>
+    <string name="meal_lunch">Comida</string>
+    <string name="meal_snack">Merienda</string>
+    <string name="meal_dinner">Cena</string>
+
+    <!-- Lista de la compra -->
+    <string name="shopping_title">Lista de la compra</string>
+    <string name="shopping_generate">Generar desde el plan</string>
+    <string name="shopping_send_todo">Enviar a Microsoft To Do</string>
+    <string name="shopping_share">Compartir…</string>
+    <string name="shopping_empty">Tu lista está vacía. Genérala a partir de tu plan.</string>
+
+    <!-- Ajustes -->
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_ai_provider">Proveedor de IA</string>
+    <string name="settings_api_key">Clave de API</string>
+    <string name="settings_api_key_hint">Se guarda solo en este dispositivo</string>
+    <string name="settings_microsoft_signin">Iniciar sesión con Microsoft</string>
+    <string name="settings_microsoft_signed_in">Conectado como %1$s</string>
+    <string name="settings_microsoft_signout">Cerrar sesión</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_about">Acerca de</string>
+
+    <!-- Común -->
+    <string name="action_save">Guardar</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_retry">Reintentar</string>
+    <string name="error_generic">Algo ha fallado. Inténtalo de nuevo.</string>
+    <string name="error_no_api_key">Configura tu clave de IA en Ajustes primero.</string>
+    <string name="loading">Cargando…</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Excluir las claves de API y la sesión MSAL del backup en la nube. -->
+    <exclude domain="sharedpref" path="navieat_secure_prefs.xml" />
+    <exclude domain="sharedpref" path="com.microsoft.identity.client.*" />
+</full-backup-content>
