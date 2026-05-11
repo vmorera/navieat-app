@@ -20,6 +20,6 @@ interface GeminiApi {
 
     companion object {
         const val BASE_URL = "https://generativelanguage.googleapis.com/"
-        const val DEFAULT_MODEL = "gemini-2.0-flash"
+        const val DEFAULT_MODEL = "gemini-2.5-flash"
     }
 }
