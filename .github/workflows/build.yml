@@ -14,12 +14,21 @@ on:
         default: debug
 
 permissions:
-  contents: write   # needed to create releases
+  contents: write   # needed to create releases when a v* tag is pushed
 
 jobs:
   build:
-    name: Assemble ${{ inputs.build_type || 'debug' }} APK
+    name: Assemble ${{ github.event.inputs.build_type || 'debug' }} APK
     runs-on: ubuntu-latest
+
+    # Promote secrets to job-level env so they can be referenced from `if:`
+    # expressions on steps (where the `secrets` context is not available).
+    env:
+      KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+      KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+      KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      BUILD_TYPE: ${{ github.event.inputs.build_type || 'debug' }}
 
     steps:
       - name: Checkout
@@ -42,12 +51,7 @@ jobs:
 
       # If a release keystore is provided as repo secrets, materialise it on disk.
       - name: Decode release keystore
-        if: ${{ inputs.build_type == 'release' && secrets.KEYSTORE_BASE64 != '' }}
-        env:
-          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        if: ${{ env.BUILD_TYPE == 'release' && env.KEYSTORE_BASE64 != '' }}
         run: |
           echo "$KEYSTORE_BASE64" | base64 -d > "$GITHUB_WORKSPACE/release.jks"
           cat > "$GITHUB_WORKSPACE/keystore.properties" <<EOF
@@ -59,7 +63,7 @@ jobs:
 
       - name: Assemble APK
         run: |
-          if [ "${{ inputs.build_type || 'debug' }}" = "release" ]; then
+          if [ "$BUILD_TYPE" = "release" ]; then
             ./gradlew assembleRelease --no-daemon --stacktrace
           else
             ./gradlew assembleDebug --no-daemon --stacktrace
@@ -75,7 +79,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: navieat-${{ inputs.build_type || 'debug' }}-${{ github.sha }}
+          name: navieat-${{ env.BUILD_TYPE }}-${{ github.sha }}
           path: app/build/outputs/apk/**/*.apk
           if-no-files-found: error
           retention-days: 30
